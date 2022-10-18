@@ -2,9 +2,10 @@ from vpython import *
 from helper import Helper
 import plotter
 
+
 class Projectile:
-    dt = 1e-3
     t = 0
+    dt = 1e-3
     ruler_counter = 0
 
     def __init__(self, mass, radius, colour, initial_height, initial_speed, initial_angle):
@@ -36,4 +37,3 @@ class Projectile:
             box(pos=vector(-0.05, Projectile.ruler_counter + 0.5, 0), size=vector(0.05, 0.95, 0.05), color=color.white)
             box(pos=vector(-0.05, -0.05, Projectile.ruler_counter + 0.5), size=vector(0.05, 0.05, 0.95), color=color.white)
             Projectile.ruler_counter += 1
-
