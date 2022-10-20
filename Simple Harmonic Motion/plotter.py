@@ -2,6 +2,8 @@ from vpython import *
 
 j = 1
 
+
+
 class Plot:
     def __init__(self):     # Create a graph for every projectile.
         global j

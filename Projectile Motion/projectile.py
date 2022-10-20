@@ -1,6 +1,6 @@
 from vpython import *
 from helper import Helper
-import plotter
+from plotter import Plot
 
 
 class Projectile:
@@ -9,11 +9,8 @@ class Projectile:
     ruler_counter = 0
 
     def __init__(self, mass, radius, colour, initial_height, initial_speed, initial_angle):
-        self.mass = mass
-        self.projectile = Helper.init_projectile(radius, initial_height, colour)
-        self.velocity = Helper.init_velocity(initial_speed, initial_angle)
-        self.gravitational_force = Helper.gravitational_force(mass)
-        self.plot = plotter.Plot()
+        self.projectile = Helper.init_projectile(radius, initial_height, initial_speed, initial_angle, mass, colour)
+        self.plot = Plot()
 
     def simulate(self):
         while self.projectile.pos.y >= 0:
@@ -26,10 +23,10 @@ class Projectile:
             Projectile.t += Projectile.dt  # update time
 
     def update_velocity(self):  # update velocity
-        self.velocity += self.gravitational_force / self.mass * Projectile.dt
+        self.projectile.velocity += Helper.gravitational_force(self.projectile.mass) / self.projectile.mass * Projectile.dt
 
     def update_position(self):  # update position
-        self.projectile.pos += self.velocity * Projectile.dt
+        self.projectile.pos += self.projectile.velocity * Projectile.dt
 
     def add_ruler(self):        # add rulers
         if max(self.projectile.pos.x, self.projectile.pos.y, self.projectile.pos.z) >= Projectile.ruler_counter:

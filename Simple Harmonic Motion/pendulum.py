@@ -6,7 +6,7 @@ from plotter import Plot
 
 class Pendulum:
     t = 0
-    dt = 1e-2
+    dt = 1e-1
 
     def __init__(self, length, init_angle):
         self.angular_acceleration = 0
@@ -19,7 +19,7 @@ class Pendulum:
 
     def simulate(self):
         while True:
-            rate(1000)
+            rate(100)
             self.update_angular_acceleration()
             self.update_angular_velocity()
             self.update_angle()
